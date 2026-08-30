@@ -10,7 +10,9 @@ coverage
 .eslintcache
 
 # local env files
-*.local
+.env
+.env.*
+!.env.example
 
 # logs
 *.log

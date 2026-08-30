@@ -75,10 +75,6 @@ function submit() {
                 <a :href="`mailto:${person.email}`">{{ person.email }}</a>
               </li>
               <li class="contact__item">
-                <i class="pi pi-phone" />
-                <a :href="`tel:${person.phone}`">{{ person.phone }}</a>
-              </li>
-              <li class="contact__item">
                 <i class="pi pi-map-marker" />
                 <span>{{ person.location }}</span>
               </li>

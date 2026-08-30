@@ -34,14 +34,13 @@ export const person = {
   name: 'Seu Nome Aqui',
   role: 'Desenvolvedor(a) Frontend',
   location: 'São Paulo, Brasil',
-  email: 'seu@email.com',
-  phone: '+55 (11) 99999-9999',
+  email: 'contato@otaviomota.dev',
   summary:
     'Desenvolvedor(a) Frontend apaixonado(a) por interfaces rápidas, acessíveis e bem projetadas. Experiência construindo aplicações web com Vue.js, TypeScript e design systems modernos.',
   socials: [
-    { label: 'GitHub', url: 'https://github.com/suaser' },
-    { label: 'LinkedIn', url: 'https://linkedin.com/in/seuperfil' },
-    { label: 'Email', url: 'mailto:seu@email.com' },
+    { label: 'GitHub', url: 'https://github.com/OtavioAMota' },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/otavio1137/' },
+    { label: 'Email', url: 'mailto:contato@otaviomota.dev' },
   ] as SocialLink[],
 }
 
@@ -115,7 +114,7 @@ export const projects: ProjectItem[] = [
     description:
       'Painel com gráficos, tabelas dinâmicas e exportação de relatórios construído com Vue 3 e PrimeVue.',
     tech: ['Vue 3', 'PrimeVue', 'ECharts'],
-    link: 'https://github.com/suaser',
+    link: 'https://github.com/OtavioAMota',
   },
   {
     name: 'Landing Page Responsiva',
@@ -125,9 +124,8 @@ export const projects: ProjectItem[] = [
   },
   {
     name: 'Biblioteca de Componentes',
-    description:
-      'Design system interno com componentes acessíveis, documentados e versionados.',
+    description: 'Design system interno com componentes acessíveis, documentados e versionados.',
     tech: ['Vue 3', 'TypeScript', 'Storybook'],
-    link: 'https://github.com/suaser',
+    link: 'https://github.com/OtavioAMota',
   },
 ]
