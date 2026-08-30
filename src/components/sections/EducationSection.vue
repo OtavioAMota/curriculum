@@ -16,7 +16,7 @@ import { education } from '@/data/resume'
           <template #subtitle>{{ item.institution }}</template>
           <template #content>
             <Tag :value="item.period" severity="secondary" class="edu__period" />
-            <p class="edu__detail">{{ item.detail }}</p>
+            <p v-if="item.detail" class="edu__detail">{{ item.detail }}</p>
           </template>
         </Card>
       </div>
