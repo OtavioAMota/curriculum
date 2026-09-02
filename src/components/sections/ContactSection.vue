@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Button from 'primevue/button'
 import SocialButton from '@/components/SocialButton.vue'
+import DownloadResumeButton from '@/components/DownloadResumeButton.vue'
 import { person, socialNetworks } from '@/data/resume'
 </script>
 
@@ -23,6 +24,7 @@ import { person, socialNetworks } from '@/data/resume'
           />
 
           <div class="contact__socials">
+            <DownloadResumeButton />
             <SocialButton
               v-for="social in socialNetworks"
               :key="social.label"

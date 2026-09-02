@@ -13,10 +13,16 @@ Currículo pessoal em formato de landing page construído com **Vue 3 + Vite + P
 
 ```
 src/
+├── assets/
+│   ├── main.css
+│   └── images/                 # fotos do Hero e hobbies (Profile.jpg, wife_and_my.jpg, ...)
 ├── components/
+│   ├── DownloadResumeButton.vue # botão de download do currículo (PDF)
 │   ├── SiteNav.vue              # navegação fixa + toggle de tema
+│   ├── SocialButton.vue         # botão de rede social (GitHub/LinkedIn)
+│   ├── TechChip.vue             # chip de tecnologia (sizes sm/md)
 │   └── sections/                # Hero, Sobre, Experiência, Habilidades,
-│                                # Educação, Projetos, Contato
+│                                # Educação, Projetos, Hobbies, Contato
 ├── composables/useTheme.ts      # tema claro/escuro (persistido em localStorage)
 ├── data/resume.ts               # TODOS os dados do currículo em um só lugar
 ├── router/index.ts
@@ -24,6 +30,8 @@ src/
 ```
 
 > Para editar o conteúdo do currículo, altere apenas `src/data/resume.ts`.
+> As imagens usadas no Hero e nos hobbies ficam em `src/assets/images/`,
+> carregadas automaticamente pelo `HobbiesSection` via `import.meta.glob`.
 
 ## Versões encapsuladas (Volta)
 
@@ -93,6 +101,14 @@ npm run type-check
 npm run lint
 ```
 
+### Formatar código
+
+```sh
+npm run format
+```
+
+Formata o código com Prettier.
+
 ### Gerar PDF do currículo
 
 ```sh
@@ -103,6 +119,14 @@ Regenera `public/curriculo-otavio-mota.pdf` a partir dos dados de `src/data/resu
 O PDF é versionado e vai junto no build do Cloudflare Pages (disponível em
 `/curriculo-otavio-mota.pdf`).
 
+> O site expõe o botão **"Baixar currículo (PDF)"** no Hero e no Contato, apontando
+> para `/curriculo-otavio-mota.pdf` (download direto, sem rota estática adicional).
+
+> O script importa `src/data/resume.ts` diretamente (type-stripping do Node).
+> Isso funciona nativamente em **Node 23.6+/24** (versão usada pelo Volta e pelo
+> Cloudflare Pages). Em Node 22.x seria preciso rodar com
+> `node --experimental-strip-types`.
+
 ## Deploy no Cloudflare Pages
 
 Este projeto é um site estático. O build gera a pasta `dist/`.
@@ -112,9 +136,14 @@ Este projeto é um site estático. O build gera a pasta `dist/`.
 
 | Configuração | Valor |
 | --- | --- |
-| Build command | `npm run build` |
+| Build command | `npm run pdf:generate && npm run build` |
 | Build output directory | `dist` |
 | Node version | `24` |
+
+O build command **regenera o PDF a partir de `src/data/resume.ts` antes de buildar**,
+garantindo que `/curriculo-otavio-mota.pdf` esteja sempre em sincronia com os dados,
+mesmo que o PDF não seja gerado localmente. Requer o `pdfmake` (já é devDependency,
+instalado pelo `npm install` do Pages) e Node 24 (definido acima).
 
 O arquivo `public/_redirects` (copiado para `dist/_redirects`) fornece fallback de SPA
 (`/* /index.html 200`), necessário para roteamento por histórico.

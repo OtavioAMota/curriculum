@@ -10,6 +10,7 @@ import {
   experience,
   education,
   projects,
+  socialNetworks,
 } from '../src/data/resume.ts'
 
 pdfMake.vfs = pdfFonts
@@ -40,16 +41,11 @@ function contactLine() {
   const items = []
   items.push({ text: person.email, link: `mailto:${person.email}`, color: LINK_BLUE, decoration: 'underline' })
   items.push({ text: person.location })
-  const gh = person.socials.find((s) => s.label === 'GitHub')
-  const li = person.socials.find((s) => s.label === 'LinkedIn')
   if (person.website) {
     items.push({ text: person.website.replace('https://', ''), link: person.website, color: LINK_BLUE, decoration: 'underline' })
   }
-  if (gh) {
-    items.push({ text: gh.url.replace('https://', ''), link: gh.url, color: LINK_BLUE, decoration: 'underline' })
-  }
-  if (li) {
-    items.push({ text: li.url.replace('https://', ''), link: li.url, color: LINK_BLUE, decoration: 'underline' })
+  for (const social of socialNetworks) {
+    items.push({ text: social.url.replace('https://', ''), link: social.url, color: LINK_BLUE, decoration: 'underline' })
   }
 
   const inlines = []

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Button from 'primevue/button'
 import SocialButton from '@/components/SocialButton.vue'
+import DownloadResumeButton from '@/components/DownloadResumeButton.vue'
 import { person, socialNetworks } from '@/data/resume'
 import profileImage from '@/assets/images/Profile.jpg'
 
@@ -25,6 +26,7 @@ function scrollTo(id: string) {
         </div>
 
         <div class="hero__actions">
+          <DownloadResumeButton />
           <Button label="Fale comigo" icon="pi pi-send" @click="scrollTo('contact')" />
           <SocialButton
             v-for="social in socialNetworks"

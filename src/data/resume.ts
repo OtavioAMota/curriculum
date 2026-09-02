@@ -59,6 +59,8 @@ export const socialNetworks: SocialLink[] = person.socials.filter(
   (social) => social.label === 'GitHub' || social.label === 'LinkedIn',
 )
 
+export const resumePdfUrl = '/curriculo-otavio-mota.pdf'
+
 export const navLinks = [
   { label: 'Sobre', href: '#about' },
   { label: 'Experiência', href: '#experience' },
