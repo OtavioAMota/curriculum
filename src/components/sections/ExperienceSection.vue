@@ -44,6 +44,12 @@ import { experience } from '@/data/resume'
               </li>
             </ul>
 
+            <ul v-if="item.highlights && item.highlights.length" class="exp-item__highlights">
+              <li v-for="highlight in item.highlights" :key="highlight" class="exp-item__highlight">
+                {{ highlight }}
+              </li>
+            </ul>
+
             <div class="exp-item__tech">
               <Chip v-for="tech in item.tech" :key="tech" :label="tech" class="exp-item__tech-chip" />
             </div>
@@ -127,6 +133,22 @@ import { experience } from '@/data/resume'
 .exp-item__role-period {
   font-size: 0.85rem;
   color: var(--p-text-muted-color);
+}
+
+.exp-item__highlights {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-left: 2px solid var(--p-primary-color);
+}
+
+.exp-item__highlight {
+  padding-left: 0.85rem;
+  color: var(--p-text-color);
+  font-size: 0.95rem;
 }
 
 .exp-item__tech {

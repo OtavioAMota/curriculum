@@ -11,6 +11,7 @@ const links = [
   { label: 'Habilidades', href: '#skills' },
   { label: 'Educação', href: '#education' },
   { label: 'Projetos', href: '#projects' },
+  { label: 'Hobbies', href: '#hobbies' },
   { label: 'Contato', href: '#contact' },
 ]
 

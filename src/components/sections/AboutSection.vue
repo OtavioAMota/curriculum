@@ -11,7 +11,7 @@ import { about, person } from '@/data/resume'
 
       <Card class="about__card">
         <template #content>
-          <p class="about__text">{{ about }}</p>
+          <p v-for="(paragraph, index) in about" :key="index" class="about__text">{{ paragraph }}</p>
 
           <div class="about__facts">
             <div class="about__fact">
@@ -24,7 +24,7 @@ import { about, person } from '@/data/resume'
             </div>
             <div class="about__fact">
               <span class="about__fact-label">Foco</span>
-              <span>Vue.js · TypeScript · UX</span>
+              <span>Python · Django · Dados</span>
             </div>
           </div>
         </template>
@@ -35,14 +35,19 @@ import { about, person } from '@/data/resume'
 
 <style scoped>
 .about__text {
-  margin: 0 0 1.5rem;
+  margin: 0;
   font-size: 1.05rem;
+}
+
+.about__text + .about__text {
+  margin-top: 1.25rem;
 }
 
 .about__facts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
+  margin-top: 2rem;
 }
 
 .about__fact {

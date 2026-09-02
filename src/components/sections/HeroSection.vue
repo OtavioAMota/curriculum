@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import Button from 'primevue/button'
 import { person } from '@/data/resume'
-
-const initials = person.name
-  .split(' ')
-  .map((part) => part.charAt(0))
-  .slice(0, 2)
-  .join('')
-  .toUpperCase()
+import profileImage from '@/assets/images/Profile.jpg'
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -17,7 +11,7 @@ function scrollTo(id: string) {
 <template>
   <section id="hero" class="hero section">
     <div class="container hero__inner">
-      <div class="hero__avatar" aria-hidden="true">{{ initials }}</div>
+      <img :src="profileImage" :alt="`Foto de ${person.name}`" class="hero__avatar" />
 
       <div class="hero__content">
         <p class="hero__eyebrow">{{ person.role }}</p>
@@ -32,11 +26,16 @@ function scrollTo(id: string) {
         <div class="hero__actions">
           <Button label="Fale comigo" icon="pi pi-send" @click="scrollTo('contact')" />
           <Button
-            label="Ver projetos"
-            icon="pi pi-briefcase"
+            v-for="social in person.socials.filter((s) => s.label === 'GitHub' || s.label === 'LinkedIn')"
+            :key="social.label"
+            :as="'a'"
+            :href="social.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            :icon="social.label === 'GitHub' ? 'pi pi-github' : 'pi pi-linkedin'"
+            :label="social.label"
             severity="secondary"
             outlined
-            @click="scrollTo('projects')"
           />
         </div>
       </div>
@@ -63,13 +62,8 @@ function scrollTo(id: string) {
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 3.5rem;
-  font-weight: 700;
-  color: var(--p-primary-contrast-color);
-  background: linear-gradient(135deg, var(--p-primary-500), var(--p-primary-700));
-  user-select: none;
+  object-fit: cover;
+  border: 2px solid var(--p-primary-color);
 }
 
 .hero__eyebrow {
@@ -128,7 +122,6 @@ function scrollTo(id: string) {
     margin: 0 auto;
     width: 140px;
     height: 140px;
-    font-size: 2.5rem;
   }
 
   .hero__meta,
