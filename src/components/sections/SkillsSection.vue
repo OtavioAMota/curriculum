@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Card from 'primevue/card'
-import Chip from 'primevue/chip'
+import TechChip from '@/components/TechChip.vue'
 import { skills } from '@/data/resume'
 </script>
 
@@ -15,12 +15,7 @@ import { skills } from '@/data/resume'
           <template #title>{{ group.category }}</template>
           <template #content>
             <div class="skills__items">
-              <Chip
-                v-for="skill in group.skills"
-                :key="skill"
-                :label="skill"
-                class="skills__chip"
-              />
+              <TechChip v-for="skill in group.skills" :key="skill" :label="skill" />
             </div>
           </template>
         </Card>
@@ -45,11 +40,5 @@ import { skills } from '@/data/resume'
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-}
-
-.skills__chip {
-  --p-chip-padding-y: 0.2rem;
-  --p-chip-padding-x: 0.65rem;
-  --p-chip-font-size: 0.85rem;
 }
 </style>

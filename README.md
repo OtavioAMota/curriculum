@@ -41,6 +41,34 @@ Caso precise mudar a versão: `volta pin node@<versao> npm@<versao>`.
 npm install
 ```
 
+> O projeto usa **PrimeVue 5**, que requer uma **licença PrimeUI** (Community ou Commercial).
+> Veja a seção [Licença PrimeUI](#licença-primeui) antes de rodar.
+
+### Licença PrimeUI
+
+O PrimeVue 5 depende de uma chave de licença do [PrimeUI](https://primeui.dev/pricing)
+(Community gratuita ou Commercial). Sem a chave, o site exibe um banner de aviso no cliente.
+
+1. Obtenha sua chave em [primeui.dev/pricing](https://primeui.dev/pricing).
+2. Copie `.env.example` para `.env` e preencha a chave:
+
+   ```sh
+   copy .env.example .env
+   ```
+
+   ```dotenv
+   VITE_PRIMEUI_LICENSE=SUA_CHAVE_AQUI
+   ```
+
+   O arquivo `.env` **não é versionado** (ignorado pelo git).
+
+3. No **Cloudflare Pages**, adicione a variável de ambiente
+   `VITE_PRIMEUI_LICENSE` com o valor da chave (Settings -> Environment variables).
+
+> Aviso: por ser uma verificação client-side, a chave fica embutida no bundle JS
+> público do build. Por isso ela nunca deve ser commitada no repositório — use apenas
+> variáveis de ambiente.
+
 ### Dev server (hot-reload)
 
 ```sh
@@ -64,6 +92,16 @@ npm run type-check
 ```sh
 npm run lint
 ```
+
+### Gerar PDF do currículo
+
+```sh
+npm run pdf:generate
+```
+
+Regenera `public/curriculo-otavio-mota.pdf` a partir dos dados de `src/data/resume.ts`.
+O PDF é versionado e vai junto no build do Cloudflare Pages (disponível em
+`/curriculo-otavio-mota.pdf`).
 
 ## Deploy no Cloudflare Pages
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Card from 'primevue/card'
-import Chip from 'primevue/chip'
 import Button from 'primevue/button'
+import TechChip from '@/components/TechChip.vue'
 import { projects } from '@/data/resume'
 </script>
 
@@ -18,7 +18,7 @@ import { projects } from '@/data/resume'
           <template #content>
             <p class="proj__problem">{{ project.problem }}</p>
             <div class="proj__tech">
-              <Chip v-for="tech in project.stack" :key="tech" :label="tech" class="proj__chip" />
+              <TechChip v-for="tech in project.stack" :key="tech" :label="tech" size="sm" />
             </div>
           </template>
           <template #footer>
@@ -80,12 +80,6 @@ import { projects } from '@/data/resume'
   flex-wrap: wrap;
   gap: 0.4rem;
   margin-bottom: 0.9rem;
-}
-
-.proj__chip {
-  --p-chip-padding-y: 0.15rem;
-  --p-chip-padding-x: 0.6rem;
-  --p-chip-font-size: 0.8rem;
 }
 
 .proj__actions {

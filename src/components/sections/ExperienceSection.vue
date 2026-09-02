@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Timeline from 'primevue/timeline'
-import Chip from 'primevue/chip'
 import Tag from 'primevue/tag'
+import TechChip from '@/components/TechChip.vue'
 import { experience } from '@/data/resume'
 </script>
 
@@ -51,7 +51,12 @@ import { experience } from '@/data/resume'
             </ul>
 
             <div class="exp-item__tech">
-              <Chip v-for="tech in item.tech" :key="tech" :label="tech" class="exp-item__tech-chip" />
+              <TechChip
+                v-for="tech in item.tech"
+                :key="tech"
+                :label="tech"
+                size="sm"
+              />
             </div>
           </div>
         </template>
@@ -155,11 +160,5 @@ import { experience } from '@/data/resume'
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-}
-
-.exp-item__tech-chip {
-  --p-chip-padding-y: 0.15rem;
-  --p-chip-padding-x: 0.6rem;
-  --p-chip-font-size: 0.8rem;
 }
 </style>

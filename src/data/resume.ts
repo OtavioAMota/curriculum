@@ -1,6 +1,7 @@
 export interface SocialLink {
   label: string
   url: string
+  icon: string
 }
 
 export interface ExperienceRole {
@@ -43,14 +44,30 @@ export const person = {
   role: 'Desenvolvedor Full-Stack | Especialista em Backend',
   location: 'Santa Catarina, Brasil',
   email: 'contato@otaviomota.dev',
+  website: 'https://otaviomota.dev',
+  focus: 'Python · Django · Dados',
   summary:
     'Desenvolvedor Full-Stack focado em Backend: Python (Django/DRF), bancos de dados geoespaciais e APIs REST de alta performance.',
   socials: [
-    { label: 'GitHub', url: 'https://github.com/OtavioAMota' },
-    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/otavio1137/' },
-    { label: 'Email', url: 'mailto:contato@otaviomota.dev' },
+    { label: 'GitHub', url: 'https://github.com/OtavioAMota', icon: 'pi pi-github' },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/otavio1137/', icon: 'pi pi-linkedin' },
+    { label: 'Email', url: 'mailto:contato@otaviomota.dev', icon: 'pi pi-send' },
   ] as SocialLink[],
 }
+
+export const socialNetworks: SocialLink[] = person.socials.filter(
+  (social) => social.label === 'GitHub' || social.label === 'LinkedIn',
+)
+
+export const navLinks = [
+  { label: 'Sobre', href: '#about' },
+  { label: 'Experiência', href: '#experience' },
+  { label: 'Habilidades', href: '#skills' },
+  { label: 'Educação', href: '#education' },
+  { label: 'Projetos', href: '#projects' },
+  { label: 'Hobbies', href: '#hobbies' },
+  { label: 'Contato', href: '#contact' },
+]
 
 export const about: string[] = [
   'Desenvolvedor Full Stack Pleno. Sigo o princípio de que todo bom software começa com um bom entendimento do problema: um olhar curioso sobre o porquê, antes de escrever a primeira linha. Gosto de transformar cenários complexos em soluções enxutas e bem fundamentadas — e é nesse movimento de analisar, modelar e construir que meu raciocínio mais rende. Transito por todo o stack, com afinidade especial pelo backend (Python, Django/DRF) e bancos de dados; no frontend, construo com a mesma base, usando Vue.js e JavaScript.',
@@ -166,8 +183,9 @@ export const hobbies: Hobby[] = [
   {
     name: 'Game Dev',
     icon: 'pi pi-code',
+    image: 'wife_and_my.jpg',
     description:
-      'Entusiasta da criação de jogos. Dedico meu tempo livre a construir jogos, unindo design, lógica e narrativa.',
+      'Meu grande projeto criativo: desenvolvimento de jogos junto com minha esposa, designer de animação. Enquanto eu construo a lógica e os sistemas, ela dá vida ao visual e à narrativa — na prática, código e arte andam de mãos dadas. Fora de criar, jogo os títulos que me desafiam como engenheiro: simulação, automação, gestão de recursos e RPGs — jogos que recompensam quem pensa em sistemas.',
   },
   {
     name: 'Terrários & Microbiomas',

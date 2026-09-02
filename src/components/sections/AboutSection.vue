@@ -24,7 +24,7 @@ import { about, person } from '@/data/resume'
             </div>
             <div class="about__fact">
               <span class="about__fact-label">Foco</span>
-              <span>Python · Django · Dados</span>
+              <span>{{ person.focus }}</span>
             </div>
           </div>
         </template>

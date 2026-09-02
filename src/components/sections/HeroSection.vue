@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Button from 'primevue/button'
-import { person } from '@/data/resume'
+import SocialButton from '@/components/SocialButton.vue'
+import { person, socialNetworks } from '@/data/resume'
 import profileImage from '@/assets/images/Profile.jpg'
 
 function scrollTo(id: string) {
@@ -25,17 +26,12 @@ function scrollTo(id: string) {
 
         <div class="hero__actions">
           <Button label="Fale comigo" icon="pi pi-send" @click="scrollTo('contact')" />
-          <Button
-            v-for="social in person.socials.filter((s) => s.label === 'GitHub' || s.label === 'LinkedIn')"
+          <SocialButton
+            v-for="social in socialNetworks"
             :key="social.label"
-            :as="'a'"
-            :href="social.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            :icon="social.label === 'GitHub' ? 'pi pi-github' : 'pi pi-linkedin'"
             :label="social.label"
-            severity="secondary"
-            outlined
+            :url="social.url"
+            :icon="social.icon"
           />
         </div>
       </div>

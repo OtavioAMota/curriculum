@@ -1,19 +1,10 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import Button from 'primevue/button'
+import { navLinks } from '@/data/resume'
 import { useTheme } from '@/composables/useTheme'
 
 const { isDark, initTheme, toggleTheme } = useTheme()
-
-const links = [
-  { label: 'Sobre', href: '#about' },
-  { label: 'Experiência', href: '#experience' },
-  { label: 'Habilidades', href: '#skills' },
-  { label: 'Educação', href: '#education' },
-  { label: 'Projetos', href: '#projects' },
-  { label: 'Hobbies', href: '#hobbies' },
-  { label: 'Contato', href: '#contact' },
-]
 
 onMounted(() => {
   initTheme()
@@ -26,7 +17,7 @@ onMounted(() => {
       <a href="#hero" class="site-nav__brand">Curriculum</a>
 
       <div class="site-nav__links">
-        <a v-for="link in links" :key="link.href" :href="link.href">{{ link.label }}</a>
+        <a v-for="link in navLinks" :key="link.href" :href="link.href">{{ link.label }}</a>
       </div>
 
       <Button

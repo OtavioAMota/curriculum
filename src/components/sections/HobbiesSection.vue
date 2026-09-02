@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import Card from 'primevue/card'
+import type { Hobby } from '@/data/resume'
 import { hobbies, hobbiesLead } from '@/data/resume'
 
-const images = import.meta.glob('@/assets/images/*.jpg', { eager: true, import: 'default' }) as Record<
-  string,
-  string
->
+const images = import.meta.glob<string>('@/assets/images/*.jpg', { eager: true, import: 'default' })
+
+function hobbyImage(hobby: Hobby): string | undefined {
+  return hobby.image ? images[`/src/assets/images/${hobby.image}`] : undefined
+}
 </script>
 
 <template>
@@ -19,8 +21,7 @@ const images = import.meta.glob('@/assets/images/*.jpg', { eager: true, import: 
       <div class="hobbies__grid">
         <Card v-for="hobby in hobbies" :key="hobby.name" class="hobbies__card">
           <template #content>
-            <img v-if="hobby.image && images[`/src/assets/images/${hobby.image}`]"
-              :src="images[`/src/assets/images/${hobby.image}`]" :alt="`${hobby.name} — ${hobby.description}`"
+            <img v-if="hobbyImage(hobby)" :src="hobbyImage(hobby)!" :alt="`${hobby.name} — ${hobby.description}`"
               class="hobbies__image" />
             <i v-else :class="hobby.icon" class="hobbies__icon" />
             <h3 class="hobbies__name">{{ hobby.name }}</h3>
@@ -64,7 +65,7 @@ const images = import.meta.glob('@/assets/images/*.jpg', { eager: true, import: 
 
 .hobbies__image {
   width: 100%;
-  height: 300px;
+  height: 400px;
   object-fit: cover;
   object-position: 50% 35%;
   border-radius: 15px;
