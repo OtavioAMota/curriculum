@@ -116,8 +116,12 @@ npm run pdf:generate
 ```
 
 Regenera `public/curriculo-otavio-mota.pdf` a partir dos dados de `src/data/resume.ts`.
-O PDF é versionado e vai junto no build do Cloudflare Pages (disponível em
-`/curriculo-otavio-mota.pdf`).
+O PDF é **versionado** (vai no commit) e é copiado para `dist/` durante o build do
+Cloudflare Pages (disponível em `/curriculo-otavio-mota.pdf`).
+
+> Importante: sempre que os dados em `src/data/resume.ts` mudarem, rode
+> `npm run pdf:generate` **antes de commitar** — caso contrário o site publica um
+> PDF desatualizado.
 
 > O site expõe o botão **"Baixar currículo (PDF)"** no Hero e no Contato, apontando
 > para `/curriculo-otavio-mota.pdf` (download direto, sem rota estática adicional).
@@ -136,14 +140,13 @@ Este projeto é um site estático. O build gera a pasta `dist/`.
 
 | Configuração | Valor |
 | --- | --- |
-| Build command | `npm run pdf:generate && npm run build` |
+| Build command | `npm run build` |
 | Build output directory | `dist` |
 | Node version | `24` |
 
-O build command **regenera o PDF a partir de `src/data/resume.ts` antes de buildar**,
-garantindo que `/curriculo-otavio-mota.pdf` esteja sempre em sincronia com os dados,
-mesmo que o PDF não seja gerado localmente. Requer o `pdfmake` (já é devDependency,
-instalado pelo `npm install` do Pages) e Node 24 (definido acima).
+O deploy usa **apenas** `npm run build`. O `public/curriculo-otavio-mota.pdf` é
+**versionado** no repositório e vai junto no build (copiado para `dist/`), portanto
+não há geração de código TypeScript no ambiente de deploy.
 
 O arquivo `public/_redirects` (copiado para `dist/_redirects`) fornece fallback de SPA
 (`/* /index.html 200`), necessário para roteamento por histórico.
